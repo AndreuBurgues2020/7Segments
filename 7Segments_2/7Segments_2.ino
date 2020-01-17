@@ -19,7 +19,11 @@ const int E = 4;
 const int F = 3;
 const int G = 2;
 const int Button = 12;
+
+//Variable per més tard
 int contador = 0;
+
+//per poder variar el Delay
 unsigned int Delay = 1000;
 
 
