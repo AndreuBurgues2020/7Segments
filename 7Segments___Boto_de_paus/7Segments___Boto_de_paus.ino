@@ -1,6 +1,6 @@
 /****************************************************************
 **                           TÍTOL:                            **
-**                7 Segments + Boto de pausa                   **
+**                   7 Segments + Sumar 1                      **
 **                                                             **
 **  NOM:Andreu Burgués Chiva                  DATA: 17/01/2020 **
 ****************************************************************/
@@ -17,23 +17,15 @@ const int D = 7;
 const int E = 6;
 const int F = 5;
 const int G = 4;
-const int InterruptButton = 2;
+const int Button = 2;
 
 //Variable per més tard
 int contador = 0;
 
-//Variables per funcio millis
-unsigned long TempsA = 0; //TempsA = Temps Actual = millis = temps que porta enses el arduino i es reseteja al cap de 49dies
-unsigned long TempsP = 0; //TempsP = Temps Passat avans de un event 
-const int Event = 1000;   //Cada quan pasa un event
-
-//Variable per la interrupcióbool
-bool Button = LOW;
 
 //************************* SETUP *******************************
 void setup() {              // configura el final de sortida   
 
-  
   //Asignar els pins com a sortida   
   pinMode (A, OUTPUT);
   pinMode (B, OUTPUT);
@@ -42,18 +34,13 @@ void setup() {              // configura el final de sortida
   pinMode (E, OUTPUT);
   pinMode (F, OUTPUT);
   pinMode (G, OUTPUT);
-  pinMode (InterruptButton, INPUT);
-  Serial.begin(9600);
+  pinMode (Button, INPUT);
 }
 
 //************************** LOOP *******************************
 void loop() {                // inicia el bucle del programa     
 
-  TempsA = millis();
-  //Per evitar fer servir delays per tal de poder posar una interrupció
-  if (TempsA - TempsP >= Event)
-  {
-    if(Button == LOW)
+    if(digitalRead(Button) == HIGH)
     {
       if (contador == 9)
       {
@@ -63,15 +50,8 @@ void loop() {                // inicia el bucle del programa
       {
         contador = contador + 1;
       }
+      delay(500);
     }
-    TempsP = TempsA;
-  }
-
-  if(digitalRead(InterruptButton) == HIGH)
-  {
-    Button = !Button;
-    delay(1000);
-  }
 
   if(contador == 0)
   {

@@ -17,19 +17,22 @@ const int D = 7;
 const int E = 6;
 const int F = 5;
 const int G = 4;
-const int Button = 2;
+const int InterruptButton = 2;
 
 //Variable per més tard
 int contador = 0;
-bool ButtonPressed;
 
 //Variables per funcio millis
 unsigned long TempsA = 0; //TempsA = Temps Actual = millis = temps que porta enses el arduino i es reseteja al cap de 49dies
 unsigned long TempsP = 0; //TempsP = Temps Passat avans de un event 
-const int Event = 1000;   //Cada quan pasa un event com més gran més temps hi haura entre numero i numero
+const int Event = 1000;   //Cada quan pasa un event
+
+//Variable per la interrupcióbool
+bool Button = LOW;
 
 //************************* SETUP *******************************
 void setup() {              // configura el final de sortida   
+
   
   //Asignar els pins com a sortida   
   pinMode (A, OUTPUT);
@@ -39,7 +42,8 @@ void setup() {              // configura el final de sortida
   pinMode (E, OUTPUT);
   pinMode (F, OUTPUT);
   pinMode (G, OUTPUT);
-  pinMode (Button, INPUT);
+  pinMode (InterruptButton, INPUT);
+  Serial.begin(9600);
 }
 
 //************************** LOOP *******************************
@@ -49,7 +53,7 @@ void loop() {                // inicia el bucle del programa
   //Per evitar fer servir delays per tal de poder posar una interrupció
   if (TempsA - TempsP >= Event)
   {
-    if(ButtonPressed == LOW)
+    if(Button == LOW)
     {
       if (contador == 9)
       {
@@ -63,12 +67,13 @@ void loop() {                // inicia el bucle del programa
     TempsP = TempsA;
   }
 
-  if (Button == HIGH)
+  if(digitalRead(InterruptButton) == HIGH)
   {
-    ButtonPressed = !ButtonPressed;
+    Button = !Button;
+    delay(1000);
   }
-  
-  if(contador == 0) //Fer un 0
+
+  if(contador == 0)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, HIGH);
@@ -78,7 +83,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, LOW);
   }
-  else if(contador == 1)  //Fer un 1
+  else if(contador == 1)
   {
     digitalWrite (A, LOW);
     digitalWrite (B, HIGH);
@@ -87,9 +92,8 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (E, LOW);
     digitalWrite (F, LOW);
     digitalWrite (G, LOW);
- 
-  //Fer un 2
-  if(contador == 2) //Fer un 2
+  }
+  else if(contador == 2)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, HIGH);
@@ -99,7 +103,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, HIGH);
   }
-  else if(contador == 3)  //Fer un 3
+  else if(contador == 3)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, HIGH);
@@ -109,7 +113,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, HIGH);
   }
-  else if(contador == 4)  //Fer un 4
+  else if(contador == 4)
   {
     digitalWrite (A, LOW);
     digitalWrite (B, HIGH);
@@ -119,7 +123,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
   }
-  else if(contador == 5)  //Fer un 5
+  else if(contador == 5)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, LOW);
@@ -129,7 +133,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
   }
-  else if(contador == 6)  //Fer un 6
+  else if(contador == 6)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, LOW);
@@ -139,7 +143,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
   }
-  else if(contador == 7)  //Fer un 7
+  else if(contador == 7)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, HIGH);
@@ -149,7 +153,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, LOW);
   }
-  else if(contador == 8)  //Fer un 8
+  else if(contador == 8)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, HIGH);
@@ -159,7 +163,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
   }
-  else if(contador == 9)  //Fer un 9
+  else if(contador == 9)
   {
     digitalWrite (A, HIGH);
     digitalWrite (B, HIGH);
@@ -169,7 +173,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
   }
-  }
 }
+
 
 //************************* FUNCIONS ****************************
