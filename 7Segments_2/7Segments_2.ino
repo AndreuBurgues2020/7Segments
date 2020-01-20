@@ -22,7 +22,7 @@ const int Button = 12;
 
 //Variable per més tard
 int contador = 0;
-
+bool ButtonRead = LOW;
 //per poder variar el Delay
 unsigned int Delay = 1000;
 
@@ -45,7 +45,9 @@ void setup() {              // configura el final de sortida
 
 //************************** LOOP *******************************
 void loop() {                // inicia el bucle del programa     
-
+  if (digitalRead == HIGH){
+    ButtonRead = !ButtonRead;
+    };
   //Fer un 0
   if(contador == 0){
     digitalWrite (A, HIGH);
@@ -56,9 +58,13 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, LOW);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
+    };
+
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
     };
     
   //Fer un 1
@@ -71,11 +77,16 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, LOW);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
     };
     
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
+    delay (100);
+    }; 
+       
   //Fer un 2
   if(contador == 2){
     digitalWrite (A, HIGH);
@@ -86,9 +97,13 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
+    };
+    
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
     };
     
   //Fer un 3
@@ -101,10 +116,14 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
     };
+
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
+    };    
     
   //Fer un 4
   if(contador == 4){
@@ -116,11 +135,15 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
     };
-    
+
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
+    };
+        
   //Fer un 5
   if(contador == 5){
     digitalWrite (A, HIGH);
@@ -131,11 +154,15 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
     };
-    
+
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
+    };
+        
   //Fer un 6
   if(contador == 6){
     digitalWrite (A, HIGH);
@@ -146,9 +173,13 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
+    };
+
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
     };
     
   //Fer un 7
@@ -161,11 +192,15 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, LOW);
     digitalWrite (G, LOW);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
     };
     
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
+    };
+        
   //Fer un 8
   if(contador == 8){
     digitalWrite (A, HIGH);
@@ -176,11 +211,15 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = contador + 1;
       };
     };
-  
+
+  if (digitalRead(Button) == HIGH){
+    ButtonRead = !ButtonRead;
+    };
+      
   //Fer un 9
   if(contador == 9){
     digitalWrite (A, HIGH);
@@ -191,7 +230,7 @@ void loop() {                // inicia el bucle del programa
     digitalWrite (F, HIGH);
     digitalWrite (G, HIGH);
     delay (Delay);
-    if (digitalRead (Button) == LOW){
+    if (ButtonRead == LOW){
       contador = 0;
       };
     };
